@@ -2,7 +2,9 @@
 
 在本机打开和编辑 HTML 页面，支持文字样式、布局调整、历史版本、AI 说明与业务图解。
 
-安装包请从 [Releases 下载](https://github.com/hanfeng1865/html-visual-editor-releases/releases)。本仓库仅用于发布安装包和使用说明，不包含编辑器开发源码。
+当前暂停公开下载，正在准备支持邀请码注册及限时试用的新客户端。原免费预览包已收起，待授权流程和安装验证完成后再开放。
+
+本仓库仅用于发布安装包和使用说明，不包含编辑器开发源码。后续安装包会在 [Releases](https://github.com/hanfeng1865/html-visual-editor-releases/releases) 提供。
 
 | 电脑 | 选择安装包 |
 |---|---|
