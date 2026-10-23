@@ -1,0 +1,60 @@
+name: Validate release attachments
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Draft release tag
+        required: true
+        type: string
+      manifest:
+        description: Expected names, sizes, SHA-256 and installer SHA-512
+        required: true
+        type: string
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download every attachment and verify actual bytes
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          ASSET_MANIFEST: ${{ inputs.manifest }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {execFileSync} from 'node:child_process';
+          import {createHash} from 'node:crypto';
+          import {createReadStream} from 'node:fs';
+          import {stat,readdir} from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const repo=process.env.GH_REPO,tag=process.env.RELEASE_TAG;
+          assert.equal(repo,'hanfeng1865/html-visual-editor-releases');
+          assert.match(tag,/^v\d+\.\d+\.\d+(?:-beta\.\d+)?$/);
+          const gh=args=>execFileSync('gh',args,{encoding:'utf8',maxBuffer:4*1024*1024});
+          const draft=JSON.parse(gh(['api',`repos/${repo}/releases?per_page=100`])).find(r=>r.tag_name===tag);
+          assert.equal(draft?.draft,true);
+          const expected=JSON.parse(process.env.ASSET_MANIFEST);assert.equal(expected.length,14);
+          const allowed=new Set(['beta.yml','beta-mac.yml','SHA256SUMS.txt','LICENSE-client.txt']);
+          for(const suffix of ['mac-arm64.dmg','mac-arm64.zip','mac-x64.dmg','mac-x64.zip','win-x64.exe'])for(const ext of ['', '.blockmap'])allowed.add(`HTML-Visual-Editor-${tag.slice(1)}-${suffix}${ext}`);
+          for(const asset of expected){assert.ok(allowed.delete(asset.name));assert.match(asset.digest,/^sha256:[a-f0-9]{64}$/);assert.ok(Number.isSafeInteger(asset.size)&&asset.size>0);}
+          assert.equal(allowed.size,0);assert.equal(draft.assets.length,14);
+          gh(['release','download',tag,'--repo',repo,'--dir','files']);
+          assert.deepEqual((await readdir('files')).sort(),expected.map(a=>a.name).sort());
+          for(const asset of expected){
+            const file='files/'+asset.name;assert.equal((await stat(file)).size,asset.size);
+            const sha256=createHash('sha256'),sha512=createHash('sha512');
+            for await(const chunk of createReadStream(file)){sha256.update(chunk);sha512.update(chunk);}
+            assert.equal('sha256:'+sha256.digest('hex'),asset.digest);
+            if(/\.(exe|dmg|zip)$/.test(asset.name)){assert.equal(typeof asset.sha512,'string');assert.equal(sha512.digest('base64'),asset.sha512);}
+            const metadata=draft.assets.find(a=>a.name===asset.name);assert.equal(metadata.size,asset.size);assert.equal(metadata.digest,asset.digest);assert.equal(metadata.state,'uploaded');
+            console.log('PASS actual file size and hashes: '+asset.name);
+          }
+          const final=JSON.parse(gh(['api',`repos/${repo}/releases/${draft.id}`]));assert.equal(final.draft,true);
+          console.log('PASS all 14 attachments. Five installers match native update manifest SHA-512; all files match expected SHA-256.');
+          NODE
