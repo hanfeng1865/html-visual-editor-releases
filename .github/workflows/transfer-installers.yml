@@ -1,0 +1,73 @@
+name: Transfer verified installers
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing draft release tag
+        required: true
+        type: string
+      manifest:
+        description: Installer names, sizes, SHA-256 and temporary download URLs
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: transfer-${{ inputs.tag }}
+  cancel-in-progress: false
+jobs:
+  transfer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download, verify and attach installers to draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ inputs.tag }}
+          ASSET_MANIFEST: ${{ inputs.manifest }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {execFileSync} from 'node:child_process';
+          import {createHash} from 'node:crypto';
+          import {open,rm,mkdir} from 'node:fs/promises';
+          import assert from 'node:assert/strict';
+          const repo=process.env.GH_REPO,tag=process.env.RELEASE_TAG;
+          assert.equal(repo,'hanfeng1865/html-visual-editor-releases');
+          assert.match(tag,/^v\d+\.\d+\.\d+(?:-beta\.\d+)?$/);
+          const gh=args=>execFileSync('gh',args,{encoding:'utf8',maxBuffer:4*1024*1024});
+          const releases=JSON.parse(gh(['api',`repos/${repo}/releases?per_page=100`]));
+          const draft=releases.find(release=>release.tag_name===tag);
+          assert.equal(draft?.draft,true,'Only an existing draft may receive installers');
+          const assets=JSON.parse(process.env.ASSET_MANIFEST);assert.ok(Array.isArray(assets)&&assets.length===5);
+          const expected=new Set(['mac-arm64.dmg','mac-arm64.zip','mac-x64.dmg','mac-x64.zip','win-x64.exe'].map(suffix=>`HTML-Visual-Editor-${tag.slice(1)}-${suffix}`));
+          await mkdir('installers');
+          for(const asset of assets){
+            assert.ok(expected.delete(asset.name),'Unexpected or repeated installer');
+            assert.ok(Number.isSafeInteger(asset.size)&&asset.size>0&&asset.size<1024*1024*1024);
+            assert.match(asset.digest,/^sha256:[a-f0-9]{64}$/);
+            const url=new URL(asset.url);
+            assert.equal(url.protocol,'https:');assert.equal(url.hostname,'release-assets.githubusercontent.com');
+            assert.equal(url.username,'');assert.equal(url.password,'');assert.equal(url.port,'');
+            console.log('::add-mask::'+asset.url);
+            const existing=draft.assets.find(item=>item.name===asset.name);
+            if(existing?.state==='uploaded'){
+              assert.equal(existing.size,asset.size);assert.equal(existing.digest,asset.digest);
+              console.log('Already verified: '+asset.name);continue;
+            }
+            const response=await fetch(asset.url,{redirect:'error',signal:AbortSignal.timeout(300000)});
+            assert.equal(response.status,200,'Installer download failed');
+            const filename='installers/'+asset.name,file=await open(filename,'wx');
+            const hash=createHash('sha256');let size=0;
+            try{for await(const chunk of response.body){size+=chunk.byteLength;assert.ok(size<=asset.size);hash.update(chunk);await file.write(chunk);}}finally{await file.close();}
+            assert.equal(size,asset.size);assert.equal('sha256:'+hash.digest('hex'),asset.digest);
+            const current=JSON.parse(gh(['api',`repos/${repo}/releases/${draft.id}`]));assert.equal(current.draft,true);
+            gh(['release','upload',tag,'--repo',repo,'--clobber',filename]);
+            await rm(filename);console.log('Verified and uploaded: '+asset.name);
+          }
+          assert.equal(expected.size,0);
+          console.log('Transfer complete. Publication requires the maintainer release verification.');
+          NODE
