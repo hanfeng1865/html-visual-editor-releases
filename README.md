@@ -2,7 +2,7 @@
 
 在本机打开和编辑 HTML 页面，支持文字样式、布局调整、历史版本、AI 说明与业务图解。
 
-最新体验版：[1.3.0-beta.10](https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.10)。本版统一迭代管理，串联需求梳理、功能清单、原型生成和需求文档，并增加 AI 画布截图与直接引用元素。
+最新体验版：[1.3.0-beta.11](https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.11)。本版新增 AI 讨论与修改任务整理、按模型查看 Token 消耗统计、业务图解拖拽连线编辑，以及需求分析与原型生成过程记录。
 
 安装包请从 [Releases 下载](https://github.com/hanfeng1865/html-visual-editor-releases/releases)。本仓库仅用于发布安装包和使用说明，不包含编辑器开发源码。
 
