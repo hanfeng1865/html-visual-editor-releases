@@ -1,94 +1,94 @@
 [
   {
-    "tag_name": "v1.3.0-beta.15",
-    "html_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.15",
+    "tag_name": "v1.3.0-beta.16",
+    "html_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.16",
     "draft": false,
     "prerelease": true,
-    "body": "# 1.3.0-beta.15 · 邀请体验版\n\n2026-11-03\n\n- 「模型连接」升级为「AI 连接」，可选择原有模型接口或本机 AI 工具，保存后供讨论、页面修改、需求梳理、逻辑说明和图解生成等功能使用。\n- 新增 Codex、Claude Code、WorkBuddy 和 DeepSeek Harness 的本机检测与调用方式，也支持配置其他提供后台调用能力的工具。检测到程序后仍需「测试连接」确认能否回复，并先在对应工具中完成登录。\n- 模型接口与各本机工具分别保留设置，切换后不会清除已保存的接口密钥；运行失败会提示原因，不会自动换用其他服务。\n- 页面修改继续由编辑器检查、备份和保存。本机工具使用临时任务目录，内置调用限制工具能力；停止任务或退出客户端时会停止相关任务进程并清理临时目录。\n- 图片能否使用取决于所选工具与模型；不支持时明确提示。录音转写继续使用已保存的模型接口。\n\n已有账号无需重新兑换邀请码，升级保留本机项目、模型设置和草稿。beta.8 及以上版本可在发现新版后点击右上角「一键更新」；beta.7 及更早版本请手动下载安装一次新版。\n\n本机 AI 工具需自行安装，登录、可用模型与额度遵循对应工具规则，安装包不附带这些工具或订阅权益。WorkBuddy 后台登录可能与桌面界面不同；Claude Code 需支持安全模式。WorkBuddy 当前适配基于 5.9.3，DeepSeek Harness 基于 0.2.1-rc.5，其他版本请以测试连接结果为准。此前 macOS 真实连接记录中 Codex 与 DeepSeek Harness 已收到回复，WorkBuddy 后台要求登录，Claude Code 请求超时，不能将自动检测或模拟测试视为全部真实服务均可用。\n\n提供 Windows 64 位、Mac Apple 芯片和 Mac Intel 芯片三个版本，均在维护者的 Apple 芯片 Mac 上制作。本次不做 Windows 与 Intel Mac 对应电脑上的实际运行、升级或本机 AI 工具验证；发布前检查分发内容、系统和芯片组件、安装包完整性与更新入口，两种 Mac 的 DMG/ZIP 另检查资源封印与最低系统版本。\n\nMac 支持 macOS 12 及以上，Windows 支持 Windows 10 及以上。当前为邀请体验版，尚未完成 Apple 开发者公证及 Windows 发布者签名。\n",
+    "body": "# 1.3.0-beta.16 · 邀请体验版\n\n2026-11-03\n\n- 修复测试成功后，切换到其他标签再返回 AI 对话时，「已连接」变回「已找到 · 待测试」的问题。保存设置、关闭后重开面板、刷新页面也会恢复当前连接的测试结果。\n- 测试结果与对应的工具、模型和连接设置绑定，在本次客户端运行中保留；更换配置或重新测试失败后，不会沿用旧的成功结果。读取设置不会重新调用模型。\n- 「本机 runtime」调整为连接方式的第一项，首次配置时默认选中；「模型接口（API Key）」放在第二项。已经保存的连接方式继续保留。\n\n已有账号无需重新兑换邀请码，升级保留本机项目、模型设置和草稿。beta.8 及以上版本可在发现新版后点击右上角「一键更新」；beta.7 及更早版本请手动下载安装一次新版。\n\n本机 AI 工具需自行安装并完成登录，可用模型与额度遵循对应工具规则。测试连接成功只表示当次请求可用。录音转写仍需已保存的模型接口。各工具的适用条件沿用 beta.15 的版本说明。\n\n提供 Windows 64 位、Mac Apple 芯片和 Mac Intel 芯片三个版本，均在维护者的 Apple 芯片 Mac 上制作。本次不做 Windows 与 Intel Mac 对应电脑上的实际运行、升级或本机 AI 工具验证；发布前检查分发内容、系统和芯片组件、安装包完整性与更新入口，两种 Mac 的 DMG/ZIP 另检查资源封印与最低系统版本。\n\nMac 支持 macOS 12 及以上，Windows 支持 Windows 10 及以上。当前为邀请体验版，尚未完成 Apple 开发者公证及 Windows 发布者签名。\n",
     "assets": [
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.dmg",
-        "size": 263552316,
-        "digest": "sha256:a8a72205c989a9045705e9e0a31285a3ce55a9d5979d86bbdc3aedbfd778bdae",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.dmg"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.dmg",
+        "size": 263552545,
+        "digest": "sha256:2202f9302de95b1ddabe163cf7fdaee8b9654cad1a2216102f5e6d19aba448bc",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.dmg"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.dmg.blockmap",
-        "size": 275040,
-        "digest": "sha256:7abd6a69ad885e95c436366aaf9b4092578a119419def22c6a1f981b85071c39",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.dmg.blockmap"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.dmg.blockmap",
+        "size": 274920,
+        "digest": "sha256:b477283e601cefaf9f4120f9eaf11aaf8a9f349343cd6276afad9753ab502a3e",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.dmg.blockmap"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.zip",
-        "size": 263565542,
-        "digest": "sha256:9710c295d5475bd3ea17f399033626860014968973e987dc0f0b6163bced3b37",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.zip"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.zip",
+        "size": 263566967,
+        "digest": "sha256:8fba1034ef2a94601b499d9a8f508bc8957f982cbdbb305f372f39c49588c824",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.zip"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.zip.blockmap",
-        "size": 275262,
-        "digest": "sha256:010979228bf592aec116d699b81a2d085fda1bb8e9e9c20a3405f509fe7d8ffa",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-arm64.zip.blockmap"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.zip.blockmap",
+        "size": 274964,
+        "digest": "sha256:51e28b8305262cf44ec9046339944cbeffde7837214c5d29de6506eb768d4695",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-arm64.zip.blockmap"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-x64.dmg",
-        "size": 278627887,
-        "digest": "sha256:6c612455e0c8f6dc8db15c91a242ecf47c893364716898077c18fa5fbd52ed4c",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-x64.dmg"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-x64.dmg",
+        "size": 278628279,
+        "digest": "sha256:a3a83f39520d35ec696bf1ae50b01c2b48ea2944291332cdf3be4e3c08759702",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-x64.dmg"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-x64.dmg.blockmap",
-        "size": 290387,
-        "digest": "sha256:3e19eeb8c73bcf9c808f414ff88ea6db78ebc3f321cd110210adf883a423251b",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-x64.dmg.blockmap"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-x64.dmg.blockmap",
+        "size": 290514,
+        "digest": "sha256:8adb3608295e842aa4c9162f27606d57591722cd63db8328a1a76d137ccb6934",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-x64.dmg.blockmap"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-x64.zip",
-        "size": 278733639,
-        "digest": "sha256:e4fbd943a1462bbe8524573276dd58a42f251525feed51a98ea7de94eb7dd113",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-x64.zip"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-x64.zip",
+        "size": 278733703,
+        "digest": "sha256:dda6c810d2cc3e17a4bc65437555d6f30a77ecf1709ce9410804b850bb3c8937",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-x64.zip"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-mac-x64.zip.blockmap",
-        "size": 290691,
-        "digest": "sha256:357b5944ec91c5f60f3f09c34a4fe547119ad7c41818dbb3e84fe746860c2fb7",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-mac-x64.zip.blockmap"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-mac-x64.zip.blockmap",
+        "size": 290926,
+        "digest": "sha256:9599bebe6659dd2ba689ef8eeb36c7cd357ce71bb56e63d603c34e30ccb03577",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-mac-x64.zip.blockmap"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-win-x64.exe",
-        "size": 225408043,
-        "digest": "sha256:b5203e0fd993612a3c4b62136ec83d0334d89903e821326bc51a38a1e8aebc7f",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-win-x64.exe"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-win-x64.exe",
+        "size": 225408013,
+        "digest": "sha256:03f46791000fad527f91809e4db1031343dbaabf01da0cc40b7b948dcf45e63a",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-win-x64.exe"
       },
       {
-        "name": "HTML-Visual-Editor-1.3.0-beta.15-win-x64.exe.blockmap",
-        "size": 231674,
-        "digest": "sha256:470f733a507f96c7e3c48d0c82608a12ce7e21934108378268f186d73f7defb6",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/HTML-Visual-Editor-1.3.0-beta.15-win-x64.exe.blockmap"
+        "name": "HTML-Visual-Editor-1.3.0-beta.16-win-x64.exe.blockmap",
+        "size": 231468,
+        "digest": "sha256:9fb34de82e5ceef5e676077a3e85e6f83340b4ab17cf1bac9832f25fa68312f0",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/HTML-Visual-Editor-1.3.0-beta.16-win-x64.exe.blockmap"
       },
       {
         "name": "LICENSE-client.txt",
         "size": 2176,
         "digest": "sha256:5936c6285c099cc9c8825a044c6f3cc97d6e8761046dcf5622509fc276d35bca",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/LICENSE-client.txt"
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/LICENSE-client.txt"
       },
       {
         "name": "SHA256SUMS.txt",
         "size": 1317,
-        "digest": "sha256:5e82d6d6000049b6f6a09aa025d9d37d2c0b25b6a884f3ef1809520cf9d9e0fa",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/SHA256SUMS.txt"
+        "digest": "sha256:19e192144d2e23c27370916bbb3b4557c4274fe7481adcf31a0c44bb84e9e5ed",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/SHA256SUMS.txt"
       },
       {
         "name": "beta-mac.yml",
         "size": 920,
-        "digest": "sha256:15fbc73766a6f3fecc2f8a0d1c4e5637a2c27180f6ca2bafa5d65efb609b4cfe",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/beta-mac.yml"
+        "digest": "sha256:9084b9ef07f57afcba7d9f12d2e2522b2011f5d6b56c88ef6826ab621a12c345",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/beta-mac.yml"
       },
       {
         "name": "beta.yml",
         "size": 391,
-        "digest": "sha256:2960dedede639f430c90369c17999e72a2ebee75beb4baf535b0e35a9ae80d7c",
-        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.15/beta.yml"
+        "digest": "sha256:ef725ae1604d067e591f4071835d6ee1793eed6090ec13cdcf06dca46bc077b9",
+        "browser_download_url": "https://github.com/hanfeng1865/html-visual-editor-releases/releases/download/v1.3.0-beta.16/beta.yml"
       }
     ]
   }
