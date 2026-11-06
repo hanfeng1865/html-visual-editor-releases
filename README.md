@@ -2,7 +2,7 @@
 
 在本机打开和编辑 HTML 页面，支持文字样式、布局调整、历史版本、AI 说明与业务图解。
 
-最新体验版：[1.3.0-beta.18](https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.18)。本版将注册、登录和权限检查切换到自有授权域名，减少对原默认域名的依赖。原账号、密码和授权期限继续有效，旧版需更新后使用新入口。国内不同网络及反馈故障的 Win11 电脑仍需实际验证。
+最新体验版：[1.3.0-beta.19](https://github.com/hanfeng1865/html-visual-editor-releases/releases/tag/v1.3.0-beta.19)。本版改进 AI 修改和讨论的内容筛选，省略大型内嵌资源的数据，保留完整资源用于预览和保存，避免普通修改被资源包大小拦住；源码对比也改为简洁的资源摘要。保留自有域名登录入口和原有账号权限。
 
 安装包请从 [Releases 下载](https://github.com/hanfeng1865/html-visual-editor-releases/releases)。本仓库仅用于发布安装包和使用说明，不包含编辑器开发源码。
 
